@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Prog6212Part2.Models.Lecturer>
+
+@{
+    ViewData["Title"] = "Manage Lecturers";
+}
+
+<h2>@ViewData["Title"]</h2>
+<a class="btn btn-primary mb-3" asp-action="Create">Add New Lecturer</a>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Contact Number</th>
+            <th>Email</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var lecturer in Model)
+        {
+            <tr>
+                <td>@lecturer.FullName</td>
+                <td>@lecturer.ContactNumber</td>
+                <td>@lecturer.Email</td>
+                <td>
+                    <a class="btn btn-warning btn-sm" asp-action="Edit" asp-route-id="@lecturer.UserId">Edit</a>
+                    <form method="post" asp-action="Delete" asp-route-id="@lecturer.UserId" style="display:inline;">
+                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
